@@ -20,6 +20,22 @@
             </ResourceDictionary.MergedDictionaries>
 
             <ToolTip x:Key="TreeViewItemToolTip" OverridesDefaultStyle="True" Placement="Left">
+                <ToolTip.Style>
+                    <Style TargetType="ToolTip">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <!-- Hide when Content is null -->
+                            <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <!-- Hide when Content is empty string -->
+                            <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToolTip.Style>
+
                 <ToolTip.Template>
                     <ControlTemplate TargetType="{x:Type ToolTip}">
                         <Border Background="White" BorderBrush="DimGray" BorderThickness="1" CornerRadius="2" Padding="7,5" TextElement.Foreground="Black">

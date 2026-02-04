@@ -40,7 +40,7 @@ namespace SteveCadwallader.CodeMaid.UI.ToolWindows.Spade
             : base(null)
         {
             // Set the tool window caption.
-            Caption = Resources.CodeMaidSpade;
+            Caption = "Structure";
 
             // Set the tool window image from moniker.
             BitmapImageMoniker = new ImageMoniker
@@ -49,8 +49,8 @@ namespace SteveCadwallader.CodeMaid.UI.ToolWindows.Spade
                 Id = 2,
             };
 
-            // Create the toolbar for the tool window.
-            ToolBar = new CommandID(PackageGuids.GuidCodeMaidMenuSet, PackageIds.ToolbarIDCodeMaidToolbarSpade);
+            // Do not create a toolbar for the Spade tool window so only the tree is visible.
+            // ToolBar intentionally not set for this tool window.
 
             // Setup the associated classes.
             _viewModel = new SpadeViewModel { SortOrder = (CodeSortOrder)Settings.Default.Digging_PrimarySortOrder };
@@ -92,7 +92,7 @@ namespace SteveCadwallader.CodeMaid.UI.ToolWindows.Spade
         /// </summary>
         private new CodeMaidPackage Package => base.Package as CodeMaidPackage;
 
-        public override bool SearchEnabled => true;
+        public override bool SearchEnabled => false;
 
         /// <summary>
         /// Gets the selected items.
